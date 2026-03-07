@@ -1,0 +1,62 @@
+# -------------------------------
+# FastAPI Backend
+# -------------------------------
+fastapi
+starlette
+uvicorn[standard]
+python-multipart
+python-dotenv
+
+# -------------------------------
+# Security & Auth
+# -------------------------------
+python-jose[cryptography]
+passlib[argon2]
+
+# -------------------------------
+# ML / DL Stack
+# -------------------------------
+tensorflow
+numpy
+pandas
+scikit-learn
+joblib
+shap
+
+# -------------------------------
+# OCR & Files
+# -------------------------------
+PyPDF2
+Pillow
+pytesseract
+pdfplumber
+pdfminer.six
+
+# -------------------------------
+# LLM (existing)
+# -------------------------------
+google-generativeai
+google-api-core
+google-api-python-client
+google-auth
+
+# -------------------------------
+# MongoDB (new)
+# -------------------------------
+motor
+pymongo
+
+# -------------------------------
+# LangChain + Groq (new)
+# -------------------------------
+langchain==0.1.20
+langchain-community==0.0.38
+langchain-groq
+
+#transformers:
+
+transformers
+tokenizers
+accelerate
+
+slowapi

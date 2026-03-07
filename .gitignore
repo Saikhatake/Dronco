@@ -1,0 +1,17 @@
+# env
+.env
+venv/
+backend/venv/
+
+# backend
+backend/uploads/
+backend/__pycache__/
+*.pkl
+*.keras
+
+# frontend
+frontend/node_modules/
+frontend/dist/
+
+# system
+.DS_Store
