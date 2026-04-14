@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import Dashboard from './Dashboard';
 import {
   AlertCircle, Activity, FileText, Home, LogOut, Menu, X,
   Upload, Brain, Heart, Bot, Eye, EyeOff, CheckCircle, XCircle, Shield
@@ -221,18 +222,25 @@ function HomePage({ setCurrentPage }) {
           Get Started Now
         </button>
       </div>
-      <div className="grid md:grid-cols-2 gap-8 mt-20">
-        <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition">
-          <Activity className="w-12 h-12 text-pink-600 mb-4" />
-          <h3 className="text-2xl font-bold mb-3">Risk Prediction</h3>
-          <p className="text-gray-600">Advanced multimodal AI analyzes biomarkers, demographics, and lifestyle to predict breast cancer risk with explainable results.</p>
-        </div>
-        <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition">
-          <FileText className="w-12 h-12 text-purple-600 mb-4" />
-          <h3 className="text-2xl font-bold mb-3">Report Summarizer</h3>
-          <p className="text-gray-600">Upload medical reports and get instant, easy-to-understand summaries with key findings and personalized recommendations.</p>
-        </div>
-      </div>
+      
+      <div className="grid md:grid-cols-3 gap-8 mt-20">
+       <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition">
+         <Activity className="w-12 h-12 text-pink-600 mb-4" />
+         <h3 className="text-2xl font-bold mb-3">Risk Prediction</h3>
+         <p className="text-gray-600">Advanced multimodal AI analyzes biomarkers, demographics, and lifestyle to predict breast cancer risk with explainable results.</p>
+       </div>
+         <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition">
+         <FileText className="w-12 h-12 text-purple-600 mb-4" />
+         <h3 className="text-2xl font-bold mb-3">Report Summarizer</h3>
+         <p className="text-gray-600">Upload medical reports and get instant, easy-to-understand summaries with key findings and personalized recommendations.</p>
+       </div>
+       <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition">
+         <Bot className="w-12 h-12 text-pink-500 mb-4" />
+         <h3 className="text-2xl font-bold mb-3">AI Doctor</h3>
+         <p className="text-gray-600">Chat with our AI-powered doctor for personalized health advice, biomarker explanations, and cancer risk guidance anytime.</p>
+       </div>
+     </div>
+           
     </div>
   );
 }
@@ -253,7 +261,13 @@ function AuthPage({ handleLogin }) {
   const strength       = getPasswordStrength(password);
   const passwordsMatch = password === confirmPass;
 
-  const handleSubmit = async (e) => {
+  <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition">
+    <Bot className="w-12 h-12 text-pink-500 mb-4" />
+    <h3 className="text-2xl font-bold mb-3">AI Doctor</h3>
+    <p className="text-gray-600">Chat with our AI-powered doctor for personalized health advice, biomarker explanations, and cancer risk guidance anytime.</p>
+  </div>  
+
+    const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     if (isSignup) {
@@ -383,47 +397,7 @@ function AuthPage({ handleLogin }) {
   );
 }
 
-// ─── Dashboard ────────────────────────────────────────────────────────────────
-function Dashboard({ user }) {
-  const [stats, setStats] = useState({ totalPredictions: 0, reportsAnalyzed: 0, lastRiskLevel: 'None yet' });
 
-  useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const [predictions, reports] = await Promise.all([PredictionAPI.history(), ReportAPI.history()]);
-        setStats({
-          totalPredictions: Array.isArray(predictions) ? predictions.length : 0,
-          reportsAnalyzed:  reports.reports?.length || 0,
-          lastRiskLevel: Array.isArray(predictions) && predictions.length > 0
-            ? predictions[predictions.length - 1].prediction?.risk_level || 'Unknown'
-            : 'None yet',
-        });
-      } catch (err) { console.error('Stats error:', err); }
-    };
-    fetchStats();
-  }, []);
-
-  return (
-    <div>
-      <h1 className="text-4xl font-bold mb-2">Welcome back, {user?.full_name || user?.email || 'User'}!</h1>
-      <p className="text-gray-500 mb-8">Here's your health overview.</p>
-      <div className="grid md:grid-cols-3 gap-6">
-        <div className="bg-blue-500 text-white p-6 rounded-xl shadow-lg">
-          <h3 className="text-lg font-semibold mb-2">Total Predictions</h3>
-          <p className="text-3xl font-bold">{stats.totalPredictions}</p>
-        </div>
-        <div className="bg-green-500 text-white p-6 rounded-xl shadow-lg">
-          <h3 className="text-lg font-semibold mb-2">Reports Analyzed</h3>
-          <p className="text-3xl font-bold">{stats.reportsAnalyzed}</p>
-        </div>
-        <div className="bg-yellow-500 text-white p-6 rounded-xl shadow-lg">
-          <h3 className="text-lg font-semibold mb-2">Last Risk Level</h3>
-          <p className="text-3xl font-bold">{stats.lastRiskLevel}</p>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 // ─── Prediction Page ──────────────────────────────────────────────────────────
 function PredictionPage() {

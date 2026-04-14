@@ -17,7 +17,7 @@ class LLMSummarizerService:
 
         self.client = Groq(api_key=api_key)
         self.model = "openai/gpt-oss-120b"  # Best for medical accuracy
-        print("✅ Groq API configured successfully")
+        print("Groq API configured successfully")
 
     def summarize_medical_report(self, report_text: str) -> dict:
         """
@@ -106,7 +106,7 @@ MEDICAL REPORT:
                 {"role": "user", "content": prompt}
             ],
             temperature=0.2,  # Lower = more consistent, less hallucination
-            max_tokens=1500,  # Increased to fit full ranges and clinical detail
+            max_tokens=3000,  # Increased to fit full ranges and clinical detail
         )
 
         raw_text = response.choices[0].message.content.strip()

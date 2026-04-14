@@ -1,17 +1,57 @@
 # env
 .env
+.env.*
+*.env
+.env.local
+.env.production
+
+# venv
 venv/
 backend/venv/
 
 # backend
 backend/uploads/
 backend/__pycache__/
+backend/**/__pycache__/
+
+# ML Models (large files)
 *.pkl
 *.keras
+*.h5
+*.pt
+*.pth
+*.onnx
+*.pb
+*.tflite
+*.joblib
+
+# Python misc
+*.pyc
+*.pyo
+*.egg-info/
+backend/.pytest_cache/
 
 # frontend
 frontend/node_modules/
 frontend/dist/
+frontend/.next/
+frontend/build/
+
+# Node
+package-lock.json
+frontend/package-lock.json
+
+# Logs
+*.log
+logs/
+
+# Docker
+.dockerignore
+
+# IDE
+.vscode/
+.idea/
 
 # system
 .DS_Store
+Thumbs.db

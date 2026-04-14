@@ -16,7 +16,7 @@ class OCRService:
         if tesseract_path:
             pytesseract.pytesseract.tesseract_cmd = tesseract_path
 
-        print("✅ OCR Service initialized")
+        print("OCR Service initialized")
 
     def extract_text_from_pdf(self, pdf_path: str) -> str:
         """Extract text from PDF (text-based + scanned PDFs)"""
@@ -26,19 +26,19 @@ class OCRService:
 
         extracted_text = ""
 
-        # 1️⃣ Try normal text extraction
+        # Try normal text extraction
         with pdfplumber.open(pdf_path) as pdf:
             for page in pdf.pages:
                 text = page.extract_text()
                 if text:
                     extracted_text += text + "\n"
 
-        # 2️⃣ If text is empty → scanned PDF → OCR
+        # If text is empty → scanned PDF → OCR
         if not extracted_text.strip():
             extracted_text = self._ocr_scanned_pdf(pdf_path)
 
         if not extracted_text.strip():
-            raise RuntimeError("❌ OCR failed: No text could be extracted")
+            raise RuntimeError("OCR failed: No text could be extracted")
 
         return extracted_text.strip()
 
@@ -52,7 +52,7 @@ class OCRService:
         text = pytesseract.image_to_string(image)
 
         if not text.strip():
-            raise RuntimeError("❌ OCR failed: No text detected in image")
+            raise RuntimeError("OCR failed: No text detected in image")
 
         return text.strip()
 

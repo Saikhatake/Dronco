@@ -5,7 +5,7 @@ import {
   Edit2, Check, X, Sparkles, Clock, AlertCircle, Menu, RefreshCw
 } from 'lucide-react';
 
-const API_URL = 'http://127.0.0.1:8000';
+import { API_URL } from "./utils/api";
 
 const SUGGESTED = [
   "What do my latest biomarkers mean?",
